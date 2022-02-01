@@ -1,0 +1,24 @@
+#137 Medium: Single Number two
+
+Prompt: Given an integer array nums where every element appears three times except for one, which appears exactly once. Find the single element and return it.
+You must implement a solution with a linear runtime complexity and use only constant extra space.
+
+My Solution:
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        
+        dict = {}
+        
+        for number in nums:
+            if str(number) not in dict:
+                dict[str(number)] = 1
+            else:
+                dict[str(number)] += 1
+                
+        for key, value in dict.items():
+            if value == 1:
+                return int(key)
+                
+Time Complexity O(n). Linear
+Space Complexity O(1). Constant Space
