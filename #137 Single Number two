@@ -20,5 +20,5 @@ class Solution:
             if value == 1:
                 return int(key)
                 
-Time Complexity O(n). Linear
-Space Complexity O(1). Constant Space
+Time Complexity O(1). Constant Time
+Space Complexity O(N). Linear Space
