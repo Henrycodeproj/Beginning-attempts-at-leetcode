@@ -13,5 +13,5 @@ class Solution:
                 nums.append(temp)
 
 
-Time Complexity  O(1). Constant time
+Time Complexity  O(N). Linear time
 Space Complexity O(1). Constant Space
