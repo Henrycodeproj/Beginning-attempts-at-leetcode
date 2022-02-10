@@ -1,0 +1,32 @@
+#20 Easy Valid Parenthesis
+
+Prompt:
+
+My Solution:
+class Solution:
+    def isValid(self, s: str) -> bool:
+        
+        stack = []
+        
+        if len(s) == 1:
+            return False
+        
+        for element in s:
+            if element == ')' and len(stack) != 0 and stack[-1] == '(':
+                stack.pop()
+                continue
+            if element == ']' and len(stack) != 0 and stack[-1] == '[':
+                stack.pop()
+                continue
+            if element == '}' and len(stack) != 0 and stack[-1] == '{':
+                stack.pop()
+                continue
+            stack.append(element)
+            
+        if stack:
+            return False
+        else:
+            return True
+            
+Time Complexity: O(N) Linear time
+Space Complexity: O(N) Linear Space
