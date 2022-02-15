@@ -1,0 +1,23 @@
+#57 Easy Maximum Subarray
+
+Prompt:
+Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
+A subarray is a contiguous part of an array.
+
+My Solution:
+#kadane's Algo
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        maximum = nums[0]
+        current = 0
+        for i in nums:
+            if current < 0:
+                current = 0
+            current += i
+            if current > maximum:
+                maximum = current
+        return maximum
+        
+ Time complexity: O(n) Linear Time
+ Space Complexity o(1) constant Space
