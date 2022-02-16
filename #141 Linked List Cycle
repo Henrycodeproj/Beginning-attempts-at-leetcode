@@ -17,3 +17,6 @@ class Solution:
             dict[head]=head
             head = head.next
         return False
+
+Time Complexity: O(N) Linear Time
+Space Complexity: O(N) Linear space, can use floyd's to turn space into o(1)
