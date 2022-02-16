@@ -19,4 +19,4 @@ class Solution:
         return False
 
 Time Complexity: O(N) Linear Time
-Space Complexity: O(N) Linear space, can use floyd's to turn space into o(1)
+Space Complexity: O(N) Linear space, can use floyd's algo to turn space into o(1)
