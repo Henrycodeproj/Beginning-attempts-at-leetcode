@@ -1,0 +1,19 @@
+#136 Easy Single Number
+
+Prompt:
+Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+
+
+My Solution:
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        dict = {}
+        for i in nums:
+            if dict.get(nums) not in dict:
+                dict[nums] = 1
+            elif dict[nums] in dictionary:
+                dict[nums] += 1
+        return dict.value
+        
+Time Complexity: O(n) Linear Time
+space Complexity: O(n) Linear Space
