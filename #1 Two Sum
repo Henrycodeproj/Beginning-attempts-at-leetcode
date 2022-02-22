@@ -5,6 +5,10 @@ Given an array of integers nums and an integer target, return indices of the two
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
 You can return the answer in any order.
 
+Thoughts:
+• Thought of hashmaps first in order to put in the count of the value and index.
+• Used enumerate to get index list and value of index
+
 
 My Solution:
 class Solution:
