@@ -1,0 +1,23 @@
+#100. Easy, Same Tree
+
+Prompt:
+Given the roots of two binary trees p and q, write a function to check if they are the same or not.
+Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
+
+
+My Solution:
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        return self.check(p,q)
+    
+    def check(self, p, q):
+        if p is None and q is None:
+            return True
+        if (p is None and q is not None) or (q is None and p is not None):
+            return False
+        if p.val != q.val:
+            return False
+        return self.check(p.left, q.left) and self.check(p.right, q.right)
+        
+ Time Complexity: O(N) Linear Time
+ Space Complexity: O(1) Constant Space
