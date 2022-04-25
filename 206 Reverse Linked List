@@ -1,0 +1,23 @@
+#206 Easy. Reverse Linked List
+
+Prompt:
+Given the head of a singly linked list and two integers left and right where left <= right, reverse the nodes of the list from position left to position right, 
+and return the reversed list.
+
+My Solution:
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        current = head
+        prev = None
+        
+        while current:
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+        return prev
+        
+        
+        
+Time complexity: O(n) Linear Time.
+Space Complexity: O(1) Constant Time.
