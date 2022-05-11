@@ -1,0 +1,25 @@
+#404 Easy. Sum of Left Leaves
+
+Prompt:
+Given the root of a binary tree, return the sum of all left leaves.
+A leaf is a node with no children. A left leaf is a leaf that is the left child of another node.
+
+
+My Solution:
+class Solution:
+    def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
+        list = []
+        self.visit(root,list)
+        return sum(list)
+        
+    def visit(self, root,list):
+        if not root:
+            return
+        if root.left and root.left.left is None and root.left.right is None:
+            list.append(root.left.val)
+        self.visit(root.left, list)
+        self.visit(root.right, list)
+        
+        
+Time complexity:O(n) Linear Time. We will traverse the whole tree which is an input of o(n)
+Space Complexity:O(log(n)) Log space. Although we are traversing the tree, we are only storing left leaf nodes making it log(n)
