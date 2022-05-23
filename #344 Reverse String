@@ -1,0 +1,21 @@
+#344 Easy. Reverse String
+
+Prompt:
+Write a function that reverses a string. The input string is given as an array of characters s.
+You must do this by modifying the input array in-place with O(1) extra memory.
+
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        l = 0
+        r = len(s) - 1
+        while l < r:
+            s[r],s[l] = s[l], s[r]
+            l +=1
+            r -=1
+        return s
+        
+Time Complexity: O(N/2)? Unsure if this is the correct time complexity because we always stop at the middle of the array
+Space complexity: O(1)
