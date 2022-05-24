@@ -1,0 +1,27 @@
+347 Medium. Top K Frequent Elements
+
+Prompt:
+Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
+
+My Solution:
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        dict = {}
+        if len(nums) == 1:
+            return nums
+        for i in range(1,len(nums)+1):
+            dict[i] = []
+
+        for i in set(nums):
+            dict[nums.count(i)] += [i]
+
+        list = []
+        for i in range(len(dict), 0,  -1):
+            if dict.get(i) is None:
+                continue
+            list += dict.get(i)
+            if len(list) == k:
+                break
+        return list
+Time Complexity O(N^2) Quadratic Time
+Space Complexity O(N^2) Quadratic Space
