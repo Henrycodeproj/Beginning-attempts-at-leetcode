@@ -1,0 +1,26 @@
+#509 Easy. Fibonacci Number
+
+Prompt:
+The Fibonacci numbers, commonly denoted F(n) form a sequence, called the Fibonacci sequence, such that each number is the sum of the two preceding ones,
+starting from 0 and 1
+
+My Solution:
+class Solution:
+    def fib(self, n: int) -> int:
+        dict = {}
+        return self.helper(n,dict)
+        
+    def helper(self, n, dict):
+        if n in dict:
+            return dict[n]
+        
+        if n <= 1:
+            value = n
+        else:
+            value = self.helper(n-1, dict) + self.helper(n-2, dict)
+            dict[n] = value
+        return value
+            
+            
+ Time Complexity: O(n) Linear Time, the function only runs based on N inputs and is cached so there is no repeated work.
+ Space Complexity: O(N) Linear Space, the space stored in the hash map can be potentially of N inputs.
