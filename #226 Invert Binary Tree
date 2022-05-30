@@ -1,0 +1,20 @@
+226 Easy. Invert Binary Tree
+
+Prompt:
+Given the root of a binary tree, invert the tree, and return its root.
+
+My Solution:
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        def helper(root):
+            if not root:
+                return
+            root.left,root.right = root.right,root.left
+            helper(root.left)
+            helper(root.right)
+            
+        helper(root)
+        return root
+        
+Time Complexity: O(n) **Linear Time** because you may have to traverse all of the parents and up to the leaf nodes.
+Space Complexity: O(1) **Contant** because there is no extra space needed to traverse an existing tree.
