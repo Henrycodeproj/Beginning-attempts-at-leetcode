@@ -1,0 +1,45 @@
+200 Medium. Number of Islands 
+
+Prompt:
+Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the number of islands.
+An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all
+surrounded by water.
+
+My Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        table = [[False for i in range(len(grid[0]))] for i in range(len(grid))]
+        islands = 0
+        
+        def isValid(row,col):
+            if row > len(grid) - 1 or col > len(grid[0]) - 1 or row < 0 or col < 0 or table[row][col] == True:
+                return False
+            if table[row][col] == False and grid[row][col] == "1":
+                table[row][col] = True
+                return True
+            
+        def Bfs(row,col):
+            table[row][col] = True
+            stack = [(row,col)]
+            while stack:
+                cur = stack.pop(0)
+                if isValid(cur[0]+1,cur[1]):
+                    stack.append((cur[0]+1,cur[1]))
+                    
+                if isValid(cur[0]-1,cur[1]):
+                    stack.append((cur[0]-1,cur[1]))
+                    
+                if isValid(cur[0],cur[1]+1):
+                    stack.append((cur[0],cur[1]+1))
+                    
+                if isValid(cur[0],cur[1]-1):
+                    stack.append((cur[0],cur[1]-1))
+            return 1
+                    
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == "1" and table[i][j] is False:
+                    islands += Bfs(i,j)
+        return islands
+        
+ Time Complexity O(V+E) Verticies plus edges because as we traverse the matrix, we are only calculating valid edges and verticies and visiting them only once.
+ Space Complexity O(m*n) Space of the original grid because we are making a table of m*n space
