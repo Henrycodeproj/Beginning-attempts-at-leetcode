@@ -1,0 +1,22 @@
+169 Easy. Majority Element
+
+Prompt:
+Given an array nums of size n, return the majority element.
+The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+
+My Solution:
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        dic = {}
+        maximum = 0
+        
+        for i in nums:
+            if i not in dic:
+                dic[i] =1
+            elif i in dic:
+                dic[i]+=1
+        maximum = max(dic, key=dic.get)
+        return maximum
+        
+ Time Comlexity: O(n) **Linear Time** because we loop through every potential element.
+ Space Complexity: O(n) **Linear space** because we may potentially store every element. 
