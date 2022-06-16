@@ -1,0 +1,30 @@
+#1302 Medium. Deepest Leaves Sum
+
+Prompt:
+Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
+
+My Solution:
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        q = [root]
+        output = []
+        list = []
+        
+        if not root:
+            return
+        
+        while q:
+            for i in range(len(q)):
+                cur = q.pop(0)
+                list.append(cur.val)
+                if cur.left:
+                    q.append(cur.left)
+                if cur.right:
+                    q.append(cur.right)
+            output.append(list)
+            list = []
+        return output
+        
+        
+Time Complexity: O(N) **Linear Time** because we only traverse every node once.
+Space Complexity: O(N) ** Linera Space** because we store all values in a list and further append the list of values to the output list.
