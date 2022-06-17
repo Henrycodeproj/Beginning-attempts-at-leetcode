@@ -1,0 +1,19 @@
+#234 Easy. Palindrome Linked List
+
+Prompt:
+Given the head of a singly linked list, return true if it is a palindrome.
+
+My solution:
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        empty = []
+        while head:
+            empty.append(head.val)
+            head = head.next
+        if empty == empty[::-1]:
+            return True
+        else:
+            return False
+            
+Time Complexity: O(n) Linear Time because we are traversing each node.
+Space Complexity: O(n) Linear Space because we are storing each node into our empty list.
