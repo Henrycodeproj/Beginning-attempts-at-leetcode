@@ -1,0 +1,26 @@
+1221 Easy. Split a String in Balanced Strings
+
+Prompt:
+Balanced strings are those that have an equal quantity of 'L' and 'R' characters.
+Given a balanced string s, split it in the maximum amount of balanced strings.
+Return the maximum amount of split balanced strings.
+
+
+My Solution:
+class Solution:
+    def balancedStringSplit(self, s: str) -> int:
+        stack = []
+        output = 0
+        for i in s:
+            if not stack:
+                stack.append(i)
+            elif i == 'L' and stack[-1] == 'R' or i == 'R' and stack[-1] == 'L':
+                stack.pop()
+                if not stack:
+                    output+=1
+            else:
+                stack.append(i)
+        return output
+        
+Time Complexity: O(n) Linear time because we are only traversing every character in the string once.
+Space Complexity: O(n) Linear Space because we will be storing all of our letters in a stack.
