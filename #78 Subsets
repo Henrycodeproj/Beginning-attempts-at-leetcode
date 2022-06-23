@@ -1,0 +1,21 @@
+78 Medium. Subsets
+
+Prompt:
+Given an integer array nums of unique elements, return all possible subsets (the power set).
+The solution set must not contain duplicate subsets. Return the solution in any order.
+
+My solution:
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        output = []
+        self.back(nums,[],output)
+        return output
+        
+    def back(self,arr,cur,output):
+        output.append(cur)
+        for j in range(len(arr)):
+            self.back(arr[j+1:],cur+[arr[j]],output)
+        return
+        
+Time Complexity: O(n!) factorial Time because as the input grows, we would need to a call stack per subset.
+Space Complexity: O(n!) factorial Space because we are creating arrays based off every subset. 
