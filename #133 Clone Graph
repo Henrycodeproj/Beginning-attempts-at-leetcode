@@ -9,3 +9,31 @@ For simplicity, each node's value is the same as the node's index (1-indexed). F
 The graph is represented in the test case using an adjacency list.
 An adjacency list is a collection of unordered lists used to represent a finite graph. Each list describes the set of neighbors of a node in the graph.
 The given node will always be the first node with val = 1. You must return the copy of the given node as a reference to the cloned graph.
+
+My Solution:
+class Solution:
+    def cloneGraph(self, node: 'Node') -> 'Node':
+        if not node:
+            return None
+        dict = {}
+        visited = set()
+        visited.add(node)
+        q = [node]
+        while q:
+            cur = q.pop(0)
+            if cur.val not in dict:
+                dict[cur.val] = Node(cur.val)
+            copy = dict[cur.val]
+            
+            for neigh in cur.neighbors:
+                if neigh.val not in dict:
+                    dict[neigh.val] = Node(neigh.val)
+                copy.neighbors.append(dict[neigh.val])
+                
+                if neigh not in visited:
+                    q.append(neigh)
+                    visited.add(neigh)
+        return dict[1]
+        
+Time Complexity: O(n) Linear space because we only add current value to queue and continually visit neighbors while creating copy of current and neighbor nodes.
+Space Complexity: O(n^2) quadratic space because we needed space allocated for the dictionary and the visited set.
