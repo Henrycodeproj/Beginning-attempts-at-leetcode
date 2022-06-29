@@ -1,0 +1,23 @@
+#22 Medium. Generate Parentheses
+
+Prompt:
+Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+
+My Solution:
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        def valid(j,k,cur,output):
+            if j == n and k == n:
+                output.append(cur)
+                return
+            if j < n:
+                valid(j+1,k,cur + '(', output)
+            if k < j:
+                valid(j,k+1,cur + ')', output)
+            return
+        output = []
+        valid(0,0,'',output)
+        return output
+        
+Time Complexity: Not too sure but I think its O(N^3)?
+Space Complexity: O(N) Linear space because we only store at most of N 
