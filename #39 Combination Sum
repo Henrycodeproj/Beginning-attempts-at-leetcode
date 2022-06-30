@@ -1,0 +1,29 @@
+#39 Medium. Combination Sum
+
+Prompt:
+Given an array of distinct integers candidates and a target integer target, return a list of all unique combinations of candidates where the chosen numbers sum to target.
+You may return the combinations in any order.
+The same number may be chosen from candidates an unlimited number of times. 
+Two combinations are unique if the frequency of at least one of the chosen numbers is different.
+It is guaranteed that the number of unique combinations that sum up to target is less than 150 combinations for the given input.
+
+My Solution:
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        output = []
+        self.comb(candidates,[],target,output)
+        return output
+        
+    def comb(self,li,cur,target,output):
+        total = sum(cur)
+        if total == target:
+            output.append(cur)
+            return 
+        for i in range(len(li)):
+            if total > target:
+                break
+            self.comb(li[i:], cur +[li[i]],target,output)
+                
+                
+Time Complexity: O(N^2)? Not completely sure for the time complexity on my answer 
+Space Complexity: O(n^2) quadratic space because we are creating subarrays every iteration of the stack call. 
