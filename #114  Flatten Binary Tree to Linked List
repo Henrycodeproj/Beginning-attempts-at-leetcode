@@ -4,3 +4,37 @@ Prompt:
 Given the root of a binary tree, flatten the tree into a "linked list":
 The "linked list" should use the same TreeNode class where the right child pointer points to the next node in the list and the left child pointer is always null.
 The "linked list" should be in the same order as a pre-order traversal of the binary tree.
+
+My Solution:
+class Solution:
+    def flatten(self, root: Optional[TreeNode]) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+        """
+        def check(cur):
+            if not cur:
+                return
+            q.append(cur)
+            if cur.left:
+                check(cur.left)
+            if cur.right:
+                check(cur.right)
+                
+        if not root:
+            return None
+        
+        q=[root]
+        check(root.left)
+        check(root.right)
+        
+        curNode = q.pop(0)
+        
+        while q:
+            nextNode = q.pop(0)
+            curNode.right = nextNode
+            curNode.left = None
+            curNode = nextNode
+        return root
+        
+Time Complexity: O(n) Linear time Complexity because we are only looping through every node at one time per loop/recursion iteration.
+Space Complexity: O(n) Linear Space Complexity because we used a queue to keep track of visited nodes
