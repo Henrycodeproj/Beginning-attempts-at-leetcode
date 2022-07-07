@@ -19,5 +19,5 @@ class Solution:
             return False
         return self.check(p.left, q.left) and self.check(p.right, q.right)
         
- Time Complexity: O(N) Linear Time
- Space Complexity: O(1) Constant Space
+ Time Complexity: O(N) Linear Time because we only visit every node one time
+ Space Complexity: O(1) Constant Space because we are traversing through the nodes and not using allocating extra space
