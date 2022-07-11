@@ -5,3 +5,31 @@ Given an array nums with n objects colored red, white, or blue, sort them in-pla
 with the colors in the order red, white, and blue.
 We will use the integers 0, 1, and 2 to represent the color red, white, and blue, respectively.
 You must solve this problem without using the library's sort function.
+
+My Solutin:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        
+        # can use a for loop to create dict keys and values if input is not known
+        dict = {0:0,1:0,2:0}
+        
+        #adds to counter
+        for i in nums:
+            dict[i] += 1
+            
+        #initialize a starting point for list splicing
+        start = 0    
+        
+        # loop through key and counter values and change spliced list to new list
+        for key,value in dict.items():
+            list = [key for x in range(value)]
+            end = len(list)
+            nums[start:start + end] = list
+            start = start + end
+            
+        return nums
+        
+ Time Complexity: O(n) Linear Time complexity because we are only looping through every item one time
+ Space complexity: O(n) Linear Space? Unsure if it is since I initialize an array that changes the old arrays position
