@@ -27,4 +27,4 @@ class Solution:
         
         
 Time Complexity: O(N) **Linear Time** because we only traverse every node once.
-Space Complexity: O(N) ** Linera Space** because we store all values in a list and further append the list of values to the output list.
+Space Complexity: O(N) ** Linear Space** because we store all values in a list and further append the list of values to the output list.
