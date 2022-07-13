@@ -36,4 +36,4 @@ class Solution:
         return dict[1]
         
 Time Complexity: O(n) Linear space because we only add current value to queue and continually visit neighbors while creating copy of current and neighbor nodes.
-Space Complexity: O(n^2) quadratic space because we needed space allocated for the dictionary and the visited set.
+Space Complexity: O(n) Linear space because we needed space allocated for the dictionary and the visited set.
