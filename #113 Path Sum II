@@ -6,3 +6,17 @@ Each path should be returned as a list of the node values, not node references.
 A root-to-leaf path is a path starting from the root and ending at any leaf node. A leaf is a node with no children.
 
 My Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        lis = []
+        def helper(cur,curtotal,stack):
+            if not cur:
+                return 
+            if not cur.left and not cur.right and curtotal + cur.val == targetSum:
+                lis.append(stack+[cur.val])
+            helper(cur.left, curtotal+cur.val, stack+[cur.val])
+            helper(cur.right, curtotal+cur.val, stack+[cur.val])
+        helper(root,0,[])
+        return lis
+
+Time Complexity: O(n) Linear Time because we only traverse through every node at most one time.
+Space Complexity: O(n) Linear Space because we at most will have every nodes value in the stack potentially.
