@@ -1,0 +1,35 @@
+419. Battleships in a Board (Medium)
+
+Description:
+  Given an m x n matrix board where each cell is a battleship 'X' or empty '.', return the number of the battleships on board.
+Battleships can only be placed horizontally or vertically on board. In other words, they can only be made of the shape 1 x k (1 row, k columns) or k x 1 (k rows, 1 column),
+where k can be of any size. At least one horizontal or vertical cell separates between two battleships (i.e., there are no adjacent battleships).
+
+
+My Solution: **BFS**
+   def countBattleships(self, board: List[List[str]]) -> int:
+        visited = set()
+
+        def dfs(row,col):
+            if row < 0 or col < 0 or row >= len(board) or col >= len(board[0]) or board[row][col] =='.' or (row,col) in visited:
+                return
+                
+            visited.add((row, col))
+            dfs(row+1, col)
+            dfs(row-1, col)
+            dfs(row, col+1)
+            dfs(row, col-1)
+
+            return
+
+        counter = 0
+        for row in range(len(board)):
+            for col in range(len(board[0])):
+                if board[row][col] == "X" and (row, col) not in visited:
+                    dfs(row,col)
+                    counter += 1
+        return counter
+
+
+**Time Complexity: O(n*m)/ o(n^2) Quadratic time.  Quadratic time because we have to loop through every cell and will look at every cells top, down, left and right adding additional M or N work**
+**Space Complexit: O(n) Linear Space. Because We could store at most, every single block potentially.
