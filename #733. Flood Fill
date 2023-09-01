@@ -1,0 +1,39 @@
+#733. Flood Fill
+
+Description:
+An image is represented by an m x n integer grid image where image[i][j] represents the pixel value of the image.
+You are also given three integers sr, sc, and color. You should perform a flood fill on the image starting from the pixel image[sr][sc].
+To perform a flood fill, consider the starting pixel, plus any pixels connected 4-directionally to the starting pixel of the same color as the starting pixel,
+plus any pixels connected 4-directionally to those pixels (also with the same color), and so on.
+Replace the color of all of the aforementioned pixels with color.
+Return the modified image after performing the flood fill.
+
+My solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+        q = [(sr,sc)]
+        origin = image[sr][sc]
+        visited = set()
+        #top, down, right, left positions
+        directions = [(0,1), (0,-1), (1,0), (-1,0)]
+        def valid(row,col):
+            if row < 0 or col < 0 or col >= len(image[0]) or row >= len(image) or (row,col) in visited or image[row][col] != origin:
+                return False
+            return True
+
+        while q:
+            c = q.pop(0)
+            row = c[0]
+            col = c[1]
+            visited.add((row,col))
+            if image[row][col] == origin:
+                image[row][col] = color
+            for x, y in directions:
+                x = row + x
+                y = col + y
+                if valid(x,y):
+                    q.append((x,y))
+
+        return image 
+
+Time Complexity: O(n^2) Quadratic time because we have to visit every cell and have to check every direction against a set
+Space Complexity O(n^2) Quadratic space because we potentially can store every cell in the q and the set.
