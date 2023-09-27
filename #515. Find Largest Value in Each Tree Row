@@ -1,0 +1,27 @@
+515. (Medium) Find Largest Value in Each Tree Row
+
+Prompt:
+Given the root of a binary tree, return an array of the largest value in each row of the tree (0-indexed).
+
+My solution:
+    def largestValues(self, root: Optional[TreeNode]) -> List[int]:
+        q = [root]
+        output = []
+        if not root:
+            return []
+
+        while q:
+            curmax = float("-inf")
+            for i in range(len(q)):
+                cur = q.pop(0)
+                curmax = max(cur.val, curmax)
+                if cur.left:
+                    q.append(cur.left)
+                if cur.right:
+                    q.append(cur.right)
+            output.append(curmax)
+        return output
+
+
+Time Complexity: O(n) Linear time because we are using a BFS method which only looks at every node once.
+Space Complexity: O(n) Linear space because we store up to n nodes in the output array.
