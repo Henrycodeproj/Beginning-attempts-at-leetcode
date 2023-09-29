@@ -1,0 +1,36 @@
+#623 (Medium) Add One Row to Tree
+
+Prompt:
+
+Given the root of a binary tree and two integers val and depth, add a row of nodes with value val at the given depth depth.
+Note that the root node is at depth 1.
+
+The adding rule is:
+Given the integer depth, for each not null tree node cur at the depth depth - 1, create two tree nodes with value val as cur's left subtree root and right subtree root.
+cur's original left subtree should be the left subtree of the new left subtree root.
+cur's original right subtree should be the right subtree of the new right subtree root.
+If depth == 1 that means there is no depth depth - 1 at all, then create a tree node with value val as the new root of the whole original tree, and the original tree is the new root's left subtree.
+
+My Solution:
+    def addOneRow(self, root: Optional[TreeNode], val: int, depth: int) -> Optional[TreeNode]:
+        nextP = root
+        q = [root]
+        level = 1
+        if depth == level:
+            nextP = TreeNode(val, root)
+        while q:
+            for _ in range(len(q)):
+                cur = q.pop(0)
+                if level+1 == depth:
+                    cur.left = TreeNode(val,left = cur.left)
+                    cur.right = TreeNode(val,right = cur.right)
+                if cur.left:
+                    q.append(cur.left)
+                if cur.right:
+                    q.append(cur.right)
+            level += 1
+
+        return nextP
+
+Time Complexity: O(N) Linear Time because we may have to visit all levels of nodes potentially, BFS algo
+Space Compleixty: O(N) Linear Space because we may have to store up to N nodes in our queue.
