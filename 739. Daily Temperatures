@@ -1,0 +1,23 @@
+739. (Medium) Daily Temperatures
+
+Prompt:
+Given an array of integers temperatures represents the daily temperatures, return an array answer such that answer[i] is the number of days you have to wait after the ith day to get a warmer temperature.
+If there is no future day for which this is possible, keep answer[i] == 0 instead.
+
+My Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        output = [0]*len(temperatures)
+        stack = []
+
+        for i in range(len(temperatures)):
+            while stack and temperatures[i] > temperatures[stack[-1]]:
+                prev_index = stack.pop()
+                output[prev_index] = i - prev_index
+            stack.append(i)
+
+        return output
+
+
+Stack DS
+Time Complexity: O(n) Linear Time because we are visiting every at most, one time and doing this in one pass. 
+Space Complexity: O(n) Linear Space because we may store up to n elements in the output and stack.
