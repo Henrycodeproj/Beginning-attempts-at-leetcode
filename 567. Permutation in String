@@ -1,0 +1,32 @@
+#567. (Medium) Permutation in String
+
+Prompt:
+Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise.
+In other words, return true if one of s1's permutations is the substring of s2.
+
+
+My Solution:
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        window_length = len(s1)
+        s1_dic = letter_count = dict([(chr(i),0) for i in range(97,123)])
+        for i in s1:
+            if i in s1_dic: s1_dic[i] += 1
+            else: s1_dic[i] = 1
+
+        dic = dict([(chr(i),0) for i in range(97,123)])
+
+        for j in range(len(s2)):
+            dic[s2[j]] = dic[s2[j]] + 1
+
+            if j > window_length-1 and dic[s2[abs(j-window_length)]] >= 1:
+                dic[s2[abs(j-window_length)]] -= 1
+
+            if dic == s1_dic:
+                return True
+
+        return False
+
+
+Time Complexity: O(n) Linear time since we only loop through the s2 string once.
+Space Complexity: O(26) or O(1) Constant space since we don't use more space since the hash maps are set at constant 26 for the total characters in the alphabet.
