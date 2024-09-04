@@ -1,0 +1,25 @@
+#1636. Sort Array by Increasing Frequency
+
+Given an array of integers nums, sort the array in increasing order based on the frequency of the values. If multiple values have the same frequency, sort them in decreasing order.
+Return the sorted array.
+
+My Solution: 
+    def frequencySort(self, nums: List[int]) -> List[int]:
+        dic = {}
+        for i in nums:
+            if i in dic:
+                dic[i] += 1
+            else:
+                dic[i] = 1
+
+        d = [(key,value) for key, value in dic.items()]
+        d.sort(key = lambda x:(x[1],-x[0]))
+        
+        answ = []
+        for x,y in d:
+            answ += [x]*y
+        return answ
+
+
+Time Complexity: O (N log N) N Log N time
+Space Complexity: O (n) Linear space
